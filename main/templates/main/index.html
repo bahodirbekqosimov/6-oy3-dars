@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MiniWiki — Bosh sahifa</title>
+{% load static %}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="#">MiniWiki</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link active" href="index.html">Bosh sahifa</a></li>
+        <li class="nav-item"><a class="nav-link" href="#articles">Maqolalar</a></li>
+        <li class="nav-item"><a class="nav-link" href="login.html">Kirish</a></li>
+        <li class="nav-item"><a class="nav-link" href="register.html">Ro'yxatdan o'tish</a></li>
+        <li class="nav-item"><a class="nav-link" href="profile.html">Profil</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container">
+    <h1>MiniWiki</h1>
+    <p>Bilimlarni tez va chiroyli toping, zamonaviy maqolalarni o‘rganing</p>
+  </div>
+</section>
+
+<div class="search-bar">
+  <input type="text" placeholder="Qidirish...">
+  <button><i class="fas fa-search"></i></button>
+</div>
+
+<section class="container" id="articles">
+  <h3 class="mb-4 fw-bold">So‘nggi maqolalar</h3>
+  <div class="row g-4">
+
+    <div class="col-md-4">
+      <div class="card article-card">
+        <img src="https://images.unsplash.com/photo-1581091215366-64e3c0e36a6c?auto=format&fit=crop&w=800&q=80" alt="AI" loading="lazy" onload="this.classList.add('loaded')" data-loading>
+        <div class="card-body">
+          <span class="badge-category">Texnologiya</span>
+          <h4>Sun'iy intellekt</h4>
+          <p>AI texnologiyalari va zamonaviy ilovalari haqida batafsil ma’lumot.</p>
+          <a href="detail.html" class="text-primary fw-bold">Batafsil →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card article-card">
+        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80" alt="HTML" loading="lazy" onload="this.classList.add('loaded')" data-loading>
+        <div class="card-body">
+          <span class="badge-category">Web</span>
+          <h4>HTML Tarixi</h4>
+          <p>Internet va HTML ning shakllanishi, veb dasturlashning asoslari.</p>
+          <a href="detail.html" class="text-primary fw-bold">Batafsil →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card article-card">
+        <img src="https://images.unsplash.com/photo-1590608897129-79be394f7f17?auto=format&fit=crop&w=800&q=80" alt="Bootstrap" loading="lazy" onload="this.classList.add('loaded')" data-loading>
+        <div class="card-body">
+          <span class="badge-category">Design</span>
+          <h4>Bootstrap Framework</h4>
+          <p>Mashhur CSS framework va u bilan zamonaviy saytlar yaratish.</p>
+          <a href="detail.html" class="text-primary fw-bold">Batafsil →</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 MiniWiki — bilim manbai</p>
+</footer>
+
+</body>
+</html>
