@@ -9,7 +9,7 @@ class Category(models.Model):
         return self.name
 
 
-class Author(models.Model):
+class User(models.Model):
     fullname = models.CharField(max_length=50)
     username = models.CharField(max_length=30, unique=True)
     email = models.EmailField(unique=True)
@@ -27,7 +27,7 @@ class Article(models.Model):
     info = models.CharField(max_length=100)
     image = models.FileField(upload_to="image/")
     category = models.ForeignKey("Category", on_delete=models.CASCADE, related_name="articles")
-    author = models.ForeignKey("Author", on_delete=models.CASCADE, related_name="articles")
+    user = models.ForeignKey("User", on_delete=models.CASCADE, related_name="articles")
     description = models.TextField(max_length=5000)
     is_active = models.BooleanField(default=True)
 

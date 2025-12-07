@@ -58,7 +58,9 @@ body {
 }
 
 .search-bar input:focus {
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+    /* box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25); */
+    box-shadow: 0 0 10px rgba(98, 15, 231, 0.637);
+    border-color: #640cf1;
     outline: none;
 }
 

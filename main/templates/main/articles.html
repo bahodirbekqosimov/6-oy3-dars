@@ -1,30 +1,10 @@
-<!DOCTYPE html>
-<html lang="uz">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MiniWiki — Maqolalar</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+{% extends "base.html" %}
 
-<nav class="navbar navbar-expand-lg navbar-light bg-white">
-  <div class="container">
-    <a class="navbar-brand fw-bold" href="index.html">MiniWiki</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="nav">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link" href="index.html">Bosh sahifa</a></li>
-        <li class="nav-item"><a class="nav-link active" href="#">Maqolalar</a></li>
-        <li class="nav-item"><a class="nav-link" href="profile.html">Profil</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
+{% block title %}MiniWiki{% endblock %}
+
+
+{% block content %}
+{% load static %}
 
 <section class="container my-5">
   <h2 class="mb-4 fw-bold">Maqolalar bo'limi</h2>
@@ -42,19 +22,22 @@
   <!-- Articles -->
   <div class="row g-4">
     <!-- Article cards (6 example cards) -->
+    {% for article in articles %}
     <div class="col-md-4 d-flex">
       <div class="card article-card w-100">
-        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80" alt="AI">
+        <img src="{{article.image.url}}" alt="AI">
         <div class="card-body">
           <div>
-            <span class="badge-category mb-2">Texnologiya</span>
-            <h4>Sun'iy intellekt</h4>
-            <p>AI texnologiyalari va zamonaviy ilovalari haqida batafsil ma’lumot.</p>
+            <span class="badge-category mb-2">{{article.category}}</span>
+            <h4>{{ article.title }}</h4>
+            <p>{{ article.info}}</p>
           </div>
-          <a href="detail.html" class="text-primary fw-bold mt-3">Batafsil →</a>
+          <a href="{%  url 'detail' article.id %}" class="text-primary fw-bold mt-3">Batafsil →</a>
         </div>
       </div>
     </div>
+
+    {% endfor %}
     <!-- Shu tarzda boshqa 5 ta maqola kartalari ham bir xil o'lchamda qo‘shilishi mumkin -->
   </div>
 
@@ -70,9 +53,5 @@
   </nav>
 </section>
 
-<footer>
-  <p>© 2025 MiniWiki — bilim manbai</p>
-</footer>
 
-</body>
-</html>
+{% endblock %}

@@ -54,10 +54,21 @@ class DetatilView(View):
 
 class ArticlesView(View):
     def get(self,req):
-        articles =  Article.objects.all()
+        articles = Article.objects.all().filter(is_active = True).order_by("-created_at")[:6]
+
         
         data = {
             "articles" : articles
         }
         
-        return render(req,"articles.html",context=data)
+        return render(req,"main/articles.html",context=data)
+
+
+class LoginView(View):
+    def get(self,req):
+        return render(req,"main/login.html")
+    
+    
+class RegisterView(View):
+    def get(self,req):
+        return render(req,"main/register.html")

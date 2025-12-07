@@ -16,16 +16,16 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-white">
   <div class="container">
-    <a class="navbar-brand fw-bold" href="#">MiniWiki </a>
+    <a class="navbar-brand fw-bold" href="{% url 'home' %}">MiniWiki </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="nav">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Bosh sahifa <img class="icons" src="{% static 'images/home.png' %}" alt=""></a></li>
-        <li class="nav-item"><a class="nav-link" href="#articles">Maqolalar <img class="icons" src="{% static 'images/news.png' %}" alt=""></a></li>
-        <li class="nav-item"><a class="nav-link" href="login.html">Kirish <img class="icons" src="{% static 'images/login.png' %}" alt=""></a></li>
-        <li class="nav-item"><a class="nav-link" href="register.html">Ro'yxatdan o'tish <img class="icons" src="{% static 'images/register.png' %}" alt=""></a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'articles' %}">Maqolalar <img class="icons" src="{% static 'images/news.png' %}" alt=""></a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Kirish <img class="icons" src="{% static 'images/login.png' %}" alt=""></a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">Ro'yxatdan o'tish <img class="icons" src="{% static 'images/register.png' %}" alt=""></a></li>
         <li class="nav-item"><a class="nav-link" href="profile.html">Profil <img class="icons" src="{% static 'images/profil.png' %}" alt=""></a></li>
       </ul>
     </div>
