@@ -24,9 +24,13 @@
       <ul class="navbar-nav ms-auto">
         <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Bosh sahifa <img class="icons" src="{% static 'images/home.png' %}" alt=""></a></li>
         <li class="nav-item"><a class="nav-link" href="{% url 'articles' %}">Maqolalar <img class="icons" src="{% static 'images/news.png' %}" alt=""></a></li>
-        <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Kirish <img class="icons" src="{% static 'images/login.png' %}" alt=""></a></li>
-        <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">Ro'yxatdan o'tish <img class="icons" src="{% static 'images/register.png' %}" alt=""></a></li>
-        <li class="nav-item"><a class="nav-link" href="profile.html">Profil <img class="icons" src="{% static 'images/profil.png' %}" alt=""></a></li>
+        {% if user.id %}
+        <li class="nav-item"><a class="nav-link" href="{% url 'profile' %}">Profil <img class="icons" src="{% static 'images/profil.png' %}" alt=""></a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Chiqish <img class="icons" src="{% static 'images/logout.png' %}" alt=""></a></li>
+        {% else %}
+        <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Kirish<img class="icons" src="{% static 'images/login.png' %}" alt=""></a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">Registratsiya <img class="icons" src="{% static 'images/register.png' %}" alt=""></a></li>
+        {% endif %}
       </ul>
     </div>
   </div>

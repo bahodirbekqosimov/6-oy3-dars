@@ -1,0 +1,66 @@
+
+{% extends "base.html" %}
+{% block title %}
+    {{ title|default:"Detail" }}
+{% endblock %}
+
+{% block content %}
+<style>
+  .del{
+    height: 30px;
+    width: 50px;
+    border: 0px;
+    border-radius: 10px;
+    background: red;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .yoq{
+    background: gray;
+  }
+
+</style>
+
+
+<section class="hero">
+  <div class="container" style="height: 15px; margin-top: -85px;">
+    <form action="{% url 'delete' article.id %}" method="post"> {% csrf_token %}
+      <h3 style="color: rgb(255, 123, 0);">Chindan ham bu postni o'chirishni istaysizmi</h3> 
+      <div style="display: flex; gap: 20px; text-align: center; margin-left: 47.7%;">
+        <button type="submit" class="del">HA</button>
+        <a href="{% url 'profile' %}" class="del yoq">YO'Q</a>
+      </div>
+    </form><hr>
+
+    <h1>{{article.title}}</h1>
+    <p>{{article.info}}</p>
+      
+  </div>
+</section>
+
+<section class="container my-5">
+  <img src="{{article.image.url}}" alt="AI" class="article-image" loading="lazy">
+
+  <div class="article-content">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <span class="badge-category">{{article.category}}</span>
+      
+     <b> <a href="{% url 'user' article.user.username %}" style="text-decoration: none;"><span class="author"><i class="fa-solid fa-user"></i>{{article.user}}</span></a></b>
+    </div>
+    {{article.description|safe}}
+
+
+    <form method="post">
+
+    </form>
+
+
+
+  </div>
+</section>
+{% endblock %}

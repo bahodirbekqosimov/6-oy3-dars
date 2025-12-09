@@ -1,0 +1,191 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}MiniWiki{% endblock %}
+
+{% block content %}
+
+<style>
+.form-card {
+  width: 700px;
+  margin: 60px auto;
+  background: #ffffff;
+  padding: 30px 28px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+  font-family: sans-serif;
+}
+
+.form-card h2 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.form-card input,
+.form-card select,
+.form-card textarea {
+  width: 100%;
+  padding: 12px 14px;
+  margin-top: 6px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  font-size: 15px;
+  transition: 0.3s;
+}
+
+.form-card input:focus,
+.form-card select:focus,
+.form-card textarea:focus {
+  outline: none;
+  border-color: #6610f2;
+  box-shadow: 0 0 6px rgba(102,16,242,0.4);
+}
+
+.form-card label {
+  font-weight: 600;
+  margin-top: 12px;
+  display: block;
+}
+
+.form-card button {
+  width: 100%;
+  margin-top: 20px;
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  background: linear-gradient(135deg, #0f9c27, #8bc919);
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.form-card a {
+  width: 100%;
+  margin-top: 20px;
+  padding: 12px;
+  text-decoration: none;
+  border-radius: 12px;
+  border: none;
+  background: linear-gradient(135deg, #f2b610, #8f50ff);
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.form-card button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(102,16,242,0.4);
+}
+
+.form-card a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(102,16,242,0.4);
+}
+
+.file-input {
+  padding: 6px 0;
+  border: none !important;
+  box-shadow: none !important;
+}
+.image-upload {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.upload-btn {
+  padding: 10px 18px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #6610f2, #8f50ff);
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.upload-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(102,16,242,0.4);
+}
+
+#file-name {
+  font-size: 13px;
+  color: #555;
+}
+.back-btn {
+  display: inline-block;
+  padding: 12px 24px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #f2b610, #ff6f61);
+  color: white;
+  font-size: 16px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.back-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(242,182,16,0.4);
+}
+
+
+</style>
+
+<div class="form-card">
+  <h2>Tahrirlash</h2>
+
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <label>Title</label>
+    <input type="text" name="title" placeholder="Maqola sarlavhasi" required>
+
+    <label>Info</label>
+    <input type="text" name="info" placeholder="Qisqacha ma’lumot" required>
+
+    <label>Image</label>
+
+        <div class="image-upload">
+            <label for="image" class="upload-btn">
+                Rasm tanlash
+            </label>
+            <span id="file-name" style="font-size: 18px;"><b>Tanlanmagan</b></span>
+        </div>
+
+    <input type="file" name="image" id="image" hidden required>
+
+        <label>Category</label>
+    <select name="category" required>
+      {% for cat in categories %}
+        <option value="{{ cat.id }}"><h2>{{ cat.name }}</h2></option>
+      {% endfor %}
+    </select>
+
+    <label>Description</label>
+    <textarea name="description" rows="5" placeholder="To‘liq tavsif..." required></textarea>
+
+    <button type="submit">Saqlash</button>
+    <div style="margin-top: 15px; text-align:center;">
+      <a href="{% url 'profile' %}" class="back-btn">Orqaga</a>
+    </div>
+  </form>
+</div>
+<script>
+  const input = document.getElementById("image");
+  const fileName = document.getElementById("file-name");
+
+  input.addEventListener("change", function () {
+    if (this.files.length > 0) {
+      fileName.textContent = this.files[0].name;
+    } else {
+      fileName.textContent = "Tanlanmagan";
+    }
+  });
+</script>
+
+
+{% endblock %}

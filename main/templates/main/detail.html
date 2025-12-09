@@ -19,7 +19,8 @@
   <div class="article-content">
     <div class="d-flex justify-content-between align-items-center mb-3">
       <span class="badge-category">{{article.category}}</span>
-      <span class="author"><i class="fa-solid fa-user"></i>{{article.user}}</span>
+      
+     <b> <a href="{% url 'user' article.user.username %}" style="text-decoration: none;"><span class="author"><i class="fa-solid fa-user"></i>{{article.user}}</span></a></b>
     </div>
     {{article.description|safe}}
 

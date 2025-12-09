@@ -7,16 +7,20 @@
 {% load static %}
 
 <section class="container my-5">
-  <h2 class="mb-4 fw-bold">Maqolalar bo'limi</h2>
+  <h2 class="mb-4 fw-bold" style="text-align: center;">Maqolalar bo'limi</h2>
+  <div class="search-bar">
+  <input type="text" placeholder="Qidirish...">
+  <button><i class="fas fa-search"></i></button>
+</div>
+
 
   <!-- Filter -->
   <div class="filter-bar">
     <a href="?category=all" class="filter-btn active">Barchasi</a>
-    <a href="?category=Texnologiya" class="filter-btn">Texnologiya</a>
-    <a href="?category=Web" class="filter-btn">Web</a>
-    <a href="?category=Design" class="filter-btn">Design</a>
-    <a href="?category=Biznes" class="filter-btn">Biznes</a>
-    <a href="?category=Fan" class="filter-btn">Fan</a>
+
+    {% for category in categories %}
+    <a href="?category={{category.name}}" class="filter-btn">{{category.name}}</a>
+    {% endfor %}
   </div>
 
   <!-- Articles -->
@@ -25,7 +29,7 @@
     {% for article in articles %}
     <div class="col-md-4 d-flex">
       <div class="card article-card w-100">
-        <img src="{{article.image.url}}" alt="AI">
+        <img src="{{article.image.url}}" alt="&nbsp; &nbsp;&nbsp;{{article.category}}">
         <div class="card-body">
           <div>
             <span class="badge-category mb-2">{{article.category}}</span>
