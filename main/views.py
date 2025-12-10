@@ -175,18 +175,69 @@ class AddView(View):
         
         
 class EditPosts(View):
-    def get(self,req,id):
+    def get(self,req:WSGIRequest,id):
          
         try:
             article = Article.objects.get(id = id)
-  
+            if not req.user.id == article.user.id:
+                return redirect("profile")
+            
+            categories = Category.objects.all().filter(is_active = True)
+            
+
             data = {
                 'article':article,
-                "title": article.title
+                "title": article.title,
+                "categories":categories
             }
-            return render(req,"main/detail.html",context=data)
+            return render(req,"main/edit_post.html",context=data)
         except:
             return redirect("404")
+        
+    def post(self,req:WSGIRequest,id):
+        try:
+            article = Article.objects.get(id = id)
+            if not req.user.id == article.user.id:
+                return redirect("profile")
+            
+            title = req.POST.get("title")
+            info = req.POST.get("info")
+            description = req.POST.get("description")
+            category_id = req.POST.get("category")
+            image = req.FILES.get("image")
+            
+            if title:
+                article.title = title
+            if info:
+                article.info = info    
+            if description:
+                article.description = description
+            if category_id:
+                article.category = Category.objects.get(id = category_id)
+            if image:
+                article.image = image
+                
+            article.save()
+            
+            return redirect("detail",id)           
+            
+                
+        except:
+            redirect( "profile")
+            
+            
+        
+    
+        
+        
+class EditProfile(View):
+    def get(self,req:WSGIRequest):
+        try:
+            user = User.objects.get(id = req.user.id)
+            data = {"user":user}
+            return render(req, "main/edit_profile.html", context=data)
+        except:
+            return redirect("profile")
          
         
         

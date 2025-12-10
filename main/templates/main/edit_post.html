@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}MiniWiki{% endblock %}
+{% block title %}Tahrirlash{% endblock %}
 
 {% block content %}
 
@@ -76,7 +76,7 @@
 
 .form-card button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(102,16,242,0.4);
+  box-shadow: 0 8px 20px rgba(16, 242, 72, 0.4);
 }
 
 .form-card a:hover {
@@ -141,32 +141,35 @@
   <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
 
-    <label>Title</label>
-    <input type="text" name="title" placeholder="Maqola sarlavhasi" required>
-
-    <label>Info</label>
-    <input type="text" name="info" placeholder="Qisqacha ma’lumot" required>
-
+    <img src="{{ article.image.url  }}" alt="" style="width: 640px; border-radius: 10px; height: 400px;"><br>
     <label>Image</label>
 
-        <div class="image-upload">
-            <label for="image" class="upload-btn">
-                Rasm tanlash
-            </label>
-            <span id="file-name" style="font-size: 18px;"><b>Tanlanmagan</b></span>
-        </div>
+    <div class="image-upload">
+        <label for="image" class="upload-btn">
+            Rasm tanlash
+        </label>
+        <span id="file-name" style="font-size: 18px;"><b>Tanlanmagan</b></span>
+    </div>
 
-    <input type="file" name="image" id="image" hidden required>
+    <input type="file" name="image" id="image" hidden >
+
+
+    <label>Title</label>
+    <input type="text" name="title" placeholder="{{article.title}}" >
+
+    <label>Info</label>
+    <input type="text" name="info" placeholder="{{article.info}}" >
+
 
         <label>Category</label>
-    <select name="category" required>
+    <select name="category" >
       {% for cat in categories %}
         <option value="{{ cat.id }}"><h2>{{ cat.name }}</h2></option>
       {% endfor %}
     </select>
 
     <label>Description</label>
-    <textarea name="description" rows="5" placeholder="To‘liq tavsif..." required></textarea>
+    <textarea name="description" rows="5" placeholder="{{article.description}}" ></textarea>
 
     <button type="submit">Saqlash</button>
     <div style="margin-top: 15px; text-align:center;">

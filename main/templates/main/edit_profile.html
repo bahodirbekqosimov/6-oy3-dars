@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block title %}MiniWiki{% endblock %}
+
+
+{% block content %}
+{% load static %}
+
+<style>
+  .password-box {
+    position: relative;
+    width: 100%;
+}
+
+.password-box input {
+    width: 100%;
+    padding-right: 35px; /* ko‘z uchun joy */
+}
+
+.password-box img {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    height: 20px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+</style>
+<section class="register-container">
+  <h2>Sozlash <img src="{% static 'images/settings.png' %}" alt="" style="height: 30px;"></h2>
+
+  <form method="post"> {% csrf_token %}
+    <span><b>To'liq ism:</b></span>
+    <input type="text" class="form-control" placeholder="{{user.fullname}}"  name="fullname">
+    <span><b>Username:</b></span>
+    <input type="text" class="form-control" placeholder="{{user.username}}"  name="username">
+    <span><b>Elektron pochta:</b></span>
+    <input type="email" class="form-control" placeholder="{{user.email}}"  name="email">
+
+    <button type="submit" class="btn btn-register">Saqlash</button>
+    <p class="text-center mt-3">Parolni unutdingizmi ? <a href="{% url 'login' %}">Parolni sozlash</a></p>
+  </form>
+</section>
+
+
+<script>
+const password = document.getElementById("password");
+const toggleEye = document.getElementById("toggleEye");
+
+toggleEye.addEventListener("click", () => {
+    if (password.type == "password"){
+      password.type = 'text';
+      toggleEye.src = "{% static 'images/show.png' %}"
+    }else{
+      password.type = 'password';
+      toggleEye.src = "{% static 'images/hide.png' %}"
+    }
+
+});
+// alert("Avval hisobdan chiqing!!")
+
+
+
+const password2 = document.getElementById("password2");
+const toggleEye2 = document.getElementById("toggleEye2");
+
+toggleEye2.addEventListener("click", () => {
+    if (password2.type == "password"){
+      password2.type = 'text';
+      toggleEye2.src = "{% static 'images/show.png' %}"
+    }else{
+      password2.type = 'password';
+      toggleEye2.src = "{% static 'images/hide.png' %}"
+    }
+
+});
+
+
+</script>
+{% endblock %}
