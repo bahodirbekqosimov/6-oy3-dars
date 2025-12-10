@@ -241,4 +241,37 @@ class EditProfile(View):
          
         
         
+# from django.shortcuts import render
+from django.http import HttpResponse
+from django.core.mail import send_mail
+
+from random import randint
+
+
+from environs import Env
+
+env = Env()
+env.read_env()
+from .message import message
+print("EMAIL_USER =", env.str("EMAIL_USER"))
+print("EMAIL_PASS =", env.str("EMAIL_PASS"))
+
+def test_email(request:WSGIRequest):
+    random = randint(100000, 999999)
         
+    user = User.objects.get(id = request.user.id)
+    data = message(user,random)
+
+    send_mail(
+        subject="Verification password",
+        message=f"<h1>{random}</h1>",
+        from_email=None,
+        recipient_list=[user.email,],
+        fail_silently=False,
+        html_message=f"{data}"
+    )
+    # except:
+    #     return HttpResponse("xato")
+        
+    
+    return HttpResponse(f"{user.email} ga yuborildi ✅")

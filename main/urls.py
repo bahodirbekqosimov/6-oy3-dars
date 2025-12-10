@@ -1,6 +1,6 @@
 
 from django.urls import path
-from .views import HomeView, DetatilView,ArticlesView,LoginView,RegisterView,ProfilView,UserView,DeleteArticleView,AddView,Error404,EditPosts,EditProfile
+from .views import HomeView, DetatilView,ArticlesView,LoginView,RegisterView,ProfilView,UserView,DeleteArticleView,AddView,Error404,EditPosts,EditProfile,test_email
 
 urlpatterns = [
     
@@ -15,10 +15,9 @@ urlpatterns = [
     path('add-post/',AddView.as_view(),name='add'),
     path('edit-post/<int:id>/',EditPosts.as_view(),name='edit'),
     path('edit/my-profile/',EditProfile.as_view(),name="editprofile"),
+    path("send/",test_email,name='email'),    
+    path('404/',Error404,name='404'),
     
-    
-    
-    path('404/',Error404,name='404')
     
     
     
